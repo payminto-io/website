@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Set SITE_URL to the public deployment origin to enable the supplied share image.
+// Set SITE_URL to the public deployment origin to enable the branded share image.
 const siteUrl = process.env.SITE_URL;
 
 export const metadata: Metadata = {
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     title: "Payminto | Payment infrastructure you own",
     description:
       "Private payment infrastructure for humans and AI agents. Your environment, your payment core.",
-    images: siteUrl ? ["/generated/og-image.png"] : [],
+    images: siteUrl ? ["/brand/payminto-social.png"] : [],
     type: "website",
   },
   twitter: {
     card: siteUrl ? "summary_large_image" : "summary",
     title: "Payminto | Payment infrastructure you own",
-    images: siteUrl ? ["/generated/og-image.png"] : [],
+    images: siteUrl ? ["/brand/payminto-social.png"] : [],
   },
 };
 

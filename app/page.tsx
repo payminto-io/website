@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BrandLogo } from "./components/brand-logo";
 import { DashboardPreview } from "./components/dashboard-preview";
+import { PaymentFlowPreview } from "./components/payment-flow-preview";
 import { ProvidersSection } from "./components/providers-section";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -35,7 +36,7 @@ function Navbar() {
           {NAV_LINKS.map(([label, href]) => <a key={label} href={href} className="nav-hover rounded-full px-3 py-1.5 text-[14px] font-semibold">{label}</a>)}
         </div>
         <div className="flex items-center gap-2">
-          <a href="#setup" className="btn-pill btn-primary !px-4 !py-2 !text-[14px]">Self-hosting</a>
+          <a href="#setup" className="nav-self-hosting btn-pill btn-primary !px-4 !py-2 !text-[14px]">Self-hosting</a>
           <button type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? "Close navigation" : "Open navigation"} onClick={() => setMenuOpen(!menuOpen)} className="grid h-10 w-10 place-items-center rounded-full border border-border md:hidden">
             <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
           </button>
@@ -49,65 +50,25 @@ function Navbar() {
 }
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
-// Original Payminto billboard typography and supplied dashboard illustration.
+// A compact payment-flow illustration explains the self-hosted product.
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-0">
-      <div className="mx-auto max-w-6xl px-6" data-reveal-stagger>
-        <p data-stagger-child className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-brand-navy">
-          Composable · Self-deployable
-        </p>
-        <h1
-          data-stagger-child
-          className="font-display mb-8 max-w-none text-[52px] font-bold text-foreground md:text-[80px]"
-          style={{ lineHeight: 1.08, letterSpacing: "-0.02em" }}
-        >
-          Payment infrastructure
-          <br />
-          for <span className="brand-underline">humans and AI agents.</span>
-        </h1>
-
-        <div data-stagger-child className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-lg text-[18px] font-semibold leading-[1.5] text-foreground-soft">
-            Give your store, application, or agent swarm its own payment layer.
-            Deploy it, connect supported acquirers, and integrate checkout through APIs and webhooks.
+    <section className="hero-section">
+      <div className="hero-layout mx-auto max-w-6xl px-6">
+        <div className="hero-copy">
+          <p className="hero-intro">For businesses, developers, and AI agents</p>
+          <h1 className="hero-title">Payment infrastructure.<br />You own the flow.</h1>
+          <p className="hero-description">
+            Build on a payment layer you control. Run Payminto on your infrastructure,
+            connect your providers, and accept payments through one integration.
           </p>
-          <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
-            <a href="#setup" className="btn-pill btn-primary">
-              Explore self-hosting
-            </a>
-            <a href="#providers" className="btn-pill btn-secondary">
-              See providers
-            </a>
+          <div className="hero-actions">
+            <a href="#setup" className="btn-pill btn-primary">Explore self-hosting</a>
+            <a href="#providers" className="btn-pill btn-secondary">See providers</a>
           </div>
+          <p className="hero-note">Your server. Your providers. Your rules.</p>
         </div>
-
-        <div data-stagger-child className="mt-8"><DashboardPreview /></div>
-        <p className="mt-3 text-xs font-semibold text-foreground-muted">Product illustration with example data.</p>
-
-        {/* Stats - inline under the screenshot, no card wrapper */}
-        <div
-          data-stagger-child
-          className="mt-12 mb-16 flex flex-wrap gap-x-16 gap-y-4"
-        >
-          {[
-            { value: "Your server", label: "Self-hosted payment core" },
-            { value: "Your providers", label: "Acquirers connected with your credentials" },
-            { value: "Your rules", label: "Fees, buffers, and reserves you configure" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div
-                className="font-display text-[30px] font-bold text-foreground md:text-[40px]"
-                style={{ lineHeight: 1.08 }}
-              >
-                {stat.value}
-              </div>
-              <div className="mt-2 text-[13px] font-bold text-foreground-muted">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
+        <PaymentFlowPreview />
       </div>
     </section>
   );
@@ -115,10 +76,10 @@ function Hero() {
 
 // ─── Trust Strip ──────────────────────────────────────────────────────────────
 function AudienceSection() {
-  return <section id="audience" className="border-y border-border py-12">
+  return <section id="audience" className="audience-section">
     <div className="mx-auto max-w-6xl px-6">
-      <h2 className="mb-6 text-[18px] font-bold">Built for businesses that need control over their payment stack.</h2>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="audience-heading"><h2>Built for your business.<br />Ready for your next idea.</h2><p>One core for customer checkout, platform payments, and agent workflows.</p></div>
+      <div className="audience-grid">
         {[
           ["Commerce & marketplaces", "Bring card and crypto checkout into one payment layer."],
           ["AI agent builders", "Connect machine-native payment workflows through APIs and MCP."],
@@ -136,7 +97,7 @@ function CardToCrypto() {
     <section id="card-to-crypto" className="py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2">
         <div>
-          <div className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-[#17152f]">
+          <div className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-brand-navy">
             Card-to-crypto
           </div>
           <h2
@@ -240,7 +201,7 @@ function ArchitectureSection() {
     <section id="architecture" className="bg-surface-mint border-t border-border py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-3xl">
-          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-[#17152f]">
+          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-brand-navy">
             Inside your infrastructure
           </p>
           <h2
@@ -577,14 +538,14 @@ function FlowDiagram() {
             >
               <defs>
                 <linearGradient id="flowGrad" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#17152f" />
-                  <stop offset="50%" stopColor="#e22323" />
-                  <stop offset="100%" stopColor="#17152f" />
+                  <stop offset="0%" stopColor="#152f2b" />
+                  <stop offset="50%" stopColor="#176b55" />
+                  <stop offset="100%" stopColor="#152f2b" />
                 </linearGradient>
                 <radialGradient id="coinGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="60%" stopColor="#fceeea" />
-                  <stop offset="100%" stopColor="#e22323" />
+                  <stop offset="60%" stopColor="#eaf4ef" />
+                  <stop offset="100%" stopColor="#176b55" />
                 </radialGradient>
                 <filter id="coinGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="6" result="b" />
@@ -616,8 +577,8 @@ function FlowDiagram() {
                     cx={n.cx}
                     cy={n.cy}
                     r="16"
-                    fill="#f7f8fa"
-                    stroke="#17152f"
+                    fill="#ffffff"
+                    stroke="#152f2b"
                     strokeWidth="2.5"
                   />
                   <text
@@ -627,7 +588,7 @@ function FlowDiagram() {
                     fontSize="11"
                     fontFamily="ui-monospace, monospace"
                     fontWeight="700"
-                    fill="#17152f"
+                    fill="#152f2b"
                   >
                     {n.label}
                   </text>
@@ -635,13 +596,13 @@ function FlowDiagram() {
               ))}
 
               <g ref={coinRef} filter="url(#coinGlow)">
-                <circle r="20" fill="url(#coinGrad)" stroke="#17152f" strokeWidth="2" />
+                <circle r="20" fill="url(#coinGrad)" stroke="#152f2b" strokeWidth="2" />
                 <text
                   textAnchor="middle"
                   y="5"
                   fontSize="17"
                   fontWeight="900"
-                  fill="#17152f"
+                  fill="#152f2b"
                   fontFamily="system-ui"
                 >
                   $
@@ -659,7 +620,7 @@ function FlowDiagram() {
                 }}
                 className="card-ring p-6"
               >
-                <div className="mb-2 font-mono text-[11px] font-bold text-[#17152f]">
+                <div className="mb-2 font-mono text-[11px] font-bold text-brand-navy">
                   {step.num}
                 </div>
                 <div className="mb-1 text-[18px] font-bold text-foreground">{step.title}</div>
@@ -721,7 +682,7 @@ function AgentsSection() {
           </div>
 
           <div className="card-ring hover-lift p-8 bg-surface-mint">
-            <div className="mb-5 inline-flex rounded-full bg-[#17152f] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-brand">
+            <div className="mb-5 inline-flex rounded-full bg-brand-navy px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-brand-light">
               Payminto
             </div>
             <ul className="space-y-3 text-[15px] font-semibold text-foreground">
@@ -733,7 +694,7 @@ function AgentsSection() {
                 "Transaction events through webhooks",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 text-[#17152f]">✓</span>
+                  <span className="mt-1 text-brand-navy">✓</span>
                   {item}
                 </li>
               ))}
@@ -748,11 +709,11 @@ function AgentsSection() {
           <div className="bg-brand-navy px-5 py-5 leading-relaxed text-white">
             <div className="text-white/50">{"// expose payminto tools to Claude"}</div>
             <div>
-              <span className="text-brand">const</span>{" "}
+              <span className="text-brand-light">const</span>{" "}
               <span className="text-white">invoice</span>{" "}
               <span className="text-white/50">=</span>{" "}
-              <span className="text-brand">await</span>{" "}
-              <span className="text-brand-hover">payminto</span>
+              <span className="text-brand-light">await</span>{" "}
+              <span className="text-brand-light">payminto</span>
               <span className="text-white/50">.createInvoice({"{"}</span>
             </div>
             <div className="pl-6">
@@ -762,17 +723,17 @@ function AgentsSection() {
             </div>
             <div className="pl-6">
               currency<span className="text-white/50">:</span>{" "}
-              <span className="text-brand-hover">&quot;USDC&quot;</span>
+              <span className="text-brand-light">&quot;USDC&quot;</span>
               <span className="text-white/50">,</span>
             </div>
             <div className="pl-6">
               chain<span className="text-white/50">:</span>{" "}
-              <span className="text-brand-hover">&quot;base&quot;</span>
+              <span className="text-brand-light">&quot;base&quot;</span>
               <span className="text-white/50">,</span>
             </div>
             <div className="pl-6">
               memo<span className="text-white/50">:</span>{" "}
-              <span className="text-brand-hover">&quot;Pro plan subscription&quot;</span>
+              <span className="text-brand-light">&quot;Pro plan subscription&quot;</span>
               <span className="text-white/50">,</span>
             </div>
             <div className="text-white/50">{"});"}</div>
@@ -911,7 +872,7 @@ function FAQ() {
               >
                 {faq.q}
                 <span
-                  className={`ml-4 grid h-8 w-8 place-items-center rounded-full bg-surface-mint text-[#17152f] transition-transform duration-300 ${
+                  className={`ml-4 grid h-8 w-8 place-items-center rounded-full bg-surface-mint text-brand-navy transition-transform duration-300 ${
                     open === i ? "rotate-45" : ""
                   }`}
                 >
@@ -970,8 +931,8 @@ function Footer() {
       <div className="flex flex-col justify-between gap-10 md:flex-row">
         <div><a href="#top" aria-label="Payminto home"><BrandLogo inverse /></a><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">Private payment infrastructure for humans and AI agents. Deploy it in your environment. Make it yours.</p></div>
         <nav aria-label="Footer navigation" className="flex flex-wrap items-start gap-6 text-sm font-semibold">
-          {NAV_LINKS.map(([label, href]) => <a key={label} href={href} className="hover:text-brand">{label}</a>)}
-          <a href="#setup" className="hover:text-brand">Self-hosting</a>
+          {NAV_LINKS.map(([label, href]) => <a key={label} href={href} className="hover:text-brand-light">{label}</a>)}
+          <a href="#setup" className="hover:text-brand-light">Self-hosting</a>
         </nav>
       </div>
       <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/15 pt-6 text-xs text-white/70 sm:flex-row">

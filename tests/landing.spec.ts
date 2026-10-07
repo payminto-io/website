@@ -12,7 +12,8 @@ test('landing loads with complete images, working destinations, and no overflow'
     return href === '#' || (href.startsWith('#') && !document.getElementById(href.slice(1)));
   }).map(link => link.textContent));
   expect(brokenLinks).toEqual([]);
-  for (const image of await page.locator('img').all()) {
+  // Responsive illustrations can contain logos inside a hidden desktop sidebar.
+  for (const image of await page.locator('img:visible').all()) {
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
   }

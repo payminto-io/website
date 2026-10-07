@@ -1,6 +1,6 @@
 # Payminto website
 
-The standalone Payminto landing page, extracted from the existing landing project with its original generated artwork and the current admin panel design system.
+The standalone Payminto landing page, extracted from the existing landing project with its original generated artwork and a minimal ink-and-mint identity.
 The page introduces private, self-hosted card and crypto payment infrastructure for businesses, developers, and AI agent builders.
 
 This repository contains the marketing website only.
@@ -30,7 +30,7 @@ Deploy the contents of `out/` to a static web host.
 On AWS Amplify, connect this repository and the build settings in `amplify.yml` are picked up automatically (Node 22, output in `out/`).
 Alternatively, import this repository into a Next.js-compatible hosting service with `npm run build` as the build command.
 No environment variables are required.
-Optionally set `SITE_URL` to your verified public origin at build time to enable the supplied social preview with an absolute image URL.
+Optionally set `SITE_URL` to your verified public origin at build time to enable the branded social preview with an absolute image URL.
 Without a public origin, image metadata is omitted so share cards never point at localhost.
 `npm start` is a local preview server, not a production deployment service.
 
@@ -50,10 +50,12 @@ GitHub Actions runs these checks on pushes and pull requests.
 
 - `app/page.tsx`: navigation, positioning, target audiences, payment controls, roadmap, card-to-crypto, custody comparison, architecture, self-hosting overview, features, payment flow, agent integration, product illustrations, FAQ, and calls to action.
 - `app/components/providers-section.tsx`: hackathon providers, track teams, and Why Solana in one section; remove it and its `Providers` nav link after the hackathon.
+- `app/components/payment-flow-preview.tsx`: compact hero illustration of the self-hosted payment flow.
 - `app/components/dashboard-preview.tsx`: admin preview with a fixed sidebar and an independently scrolling workspace.
-- `app/globals.css`: admin-aligned theme, typography, responsive layout, and accessibility.
+- `app/globals.css`: ink-and-mint theme, typography, responsive layout, and accessibility.
 - `app/layout.tsx`: page metadata, fonts, and favicon.
-- `public/generated/`: original generated illustrations and the existing social preview.
+- `public/brand/`: outlined SVG logo family, transparent PNG exports, and the updated social preview.
+- `public/generated/`: original generated product illustrations.
 - `docs/PAYMINTO_DESIGN_SYSTEM.md`: shared brand and website visual reference.
 
 The dashboard preview uses the admin panel design with example data.

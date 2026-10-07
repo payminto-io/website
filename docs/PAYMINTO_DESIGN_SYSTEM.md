@@ -1,49 +1,56 @@
 # Payminto website design system
 
-The website follows the current merchant/admin panel identity.
-Keep the website and admin panel recognizably part of the same product.
+The landing page uses a minimal identity built around payment ownership and composable infrastructure.
+The open-channel P retains the product initial while two separated routes suggest a payment flow.
+The website keeps the admin workspace's Inter typography and product structure, with a quieter ink-and-mint palette.
 
-## Shared brand
+## Brand assets
 
-Use the navy rounded-square P mark, green corner accent, title-case Payminto wordmark, and Composable payments subtitle.
-Navigation, footer, dashboard preview, and favicon use the same brand construction.
-The admin panel remains the reference for future branding changes.
+Use the outlined logo SVGs under `public/brand/`.
+Their lettering is outlined from Inter 700, so the downloadable lockup does not require an installed font.
+Use the light version on white or pale surfaces and the dark version on ink surfaces.
+Use the monochrome version for one-colour reproduction.
+The mark is shared by the navigation, footer, dashboard illustration, payment-flow illustration, and favicon.
+Keep at least 8 units of clear space around the symbol on its 48-unit grid.
+Use the mark at 24px or larger in interfaces, with 16px reserved for favicon use.
+Use the full lockup at 145px wide or larger.
+Transparent PNG exports are provided at 1x, 2x, 3x, and 4x for every SVG variant.
+The light logo preview and small-size construction proof live in `docs/brand/`.
 
 | Role | Value |
 | --- | --- |
-| Canvas | `#f7f8fa` |
-| Surface | `#ffffff` |
-| Secondary surface | `#f1f3f6` |
-| Primary action | `#e22323` |
-| Action hover | `#c91e1e` |
-| Soft action surface | `#fceeea` |
-| Brand navy | `#17152f` |
-| Primary text | `#15171c` |
-| Secondary text | `#4b5260` |
-| Muted text | `#69707d` |
-| Border | `#e4e7ec` |
-| Success | `#22b86a` |
+| Canvas and surface | `#ffffff` |
+| Secondary surface | `#f5f8f7` |
+| Soft mint surface | `#eaf4ef` |
+| Ink and primary text | `#152f2b` |
+| Primary action | `#176b55` |
+| Action hover | `#125340` |
+| Symbol accent | `#23846d` |
+| Mint on dark surfaces | `#75d7bd` |
+| Secondary text | `#4e625b` |
+| Muted text | `#64756e` |
+| Border | `#dce6e1` |
 
-Primary actions have white text on red.
-Inter is shared across the website and admin interface.
-Headings use weight 700 and a readable 1.08 line height rather than the old billboard treatment.
-Website headings remain larger than application headings to suit marketing content.
-Cards use restrained 12px or 16px corners and thin borders.
-Buttons use compact rounded rectangles rather than pills.
+Primary actions use white text on deep green.
+Mint is a supporting colour, rather than a full-page background or decorative gradient.
+Inter is the interface and display family.
+The hero uses weight 600, two concise lines, and a readable 1.12 line height.
+Buttons use compact rounded rectangles, and cards use restrained corners and thin borders.
 
-## Product preview and imagery
+## Layout and illustrations
 
-The dashboard preview uses real HTML and SVG with the admin panel's sidebar, coral banner, metric cards, chart, and transaction rows.
-Its figures are explicitly example data.
-It makes no backend requests and cannot execute payments.
+The first screen pairs ownership-focused copy with a compact diagram of checkout, agent payments, the self-hosted core, and connected payment rails.
+The diagram is native HTML and SVG, labelled as an illustration, and contains no live payment data.
+The second section presents four existing target audiences in a simple divided layout.
+The fuller dashboard preview remains in the product section, with its fixed sidebar, independently scrolling workspace, and clearly labelled example data.
+Provider filters, hackathon tracks, architecture, and existing product content remain available.
 Preserve the supplied explanatory artwork under `public/generated/`.
-Those illustrations are secondary content, rather than the source of the website's brand palette.
-The mobile companion is labeled as a concept.
-The existing social preview remains available when `SITE_URL` is configured.
+The mobile companion remains labelled as a concept.
+The social preview at `/brand/payminto-social.png` uses the updated identity when `SITE_URL` is configured.
 
 ## Behaviour and verification
 
 Preserve working section links, mobile navigation, keyboard FAQs, focus indicators, image alternatives, and reduced-motion support.
-The payment-path animation is static on narrow or short screens.
+The payment-path animation remains static on narrow or short screens.
 Run lint, the production export, and the existing desktop/mobile browser tests before pushing.
 Avoid unverified customer, fee, settlement-speed, or production-readiness claims.
