@@ -1,63 +1,49 @@
-# Payminto landing design system
+# Payminto website design system
 
-This website preserves the existing Payminto landing project's light canvas, purple identity, bold typography, and supplied generated imagery.
-The page explains infrastructure ownership, payment rails, and human plus agent workflows.
+The website follows the current merchant/admin panel identity.
+Keep the website and admin panel recognizably part of the same product.
 
-## Palette
+## Shared brand
+
+Use the navy rounded-square P mark, green corner accent, title-case Payminto wordmark, and Merchant infrastructure subtitle.
+Navigation, footer, dashboard preview, and favicon use the same brand construction.
+The admin panel remains the reference for future branding changes.
 
 | Role | Value |
 | --- | --- |
-| Canvas | `#fafaf7` |
+| Canvas | `#f7f8fa` |
 | Surface | `#ffffff` |
-| Alternate surface | `#f4f5f1` |
-| Lavender surface | `#ede9fe` |
-| Brand | `#a78bfa` |
-| Brand ink | `#3b1d8a` |
-| Primary text | `#0e0f0c` |
-| Secondary text | `#454745` |
-| Caption text | `#656562` |
+| Secondary surface | `#f1f3f6` |
+| Primary action | `#e22323` |
+| Action hover | `#c91e1e` |
+| Soft action surface | `#fceeea` |
+| Brand navy | `#17152f` |
+| Primary text | `#15171c` |
+| Secondary text | `#4b5260` |
+| Muted text | `#69707d` |
+| Border | `#e4e7ec` |
+| Success | `#22b86a` |
 
-Primary buttons pair purple backgrounds with deep-purple text.
-The final footer is the inverted dark surface.
-Theme values live in `app/globals.css`.
+Primary actions have white text on red.
+Inter is shared across the website and admin interface.
+Headings use weight 700 and a readable 1.08 line height rather than the old billboard treatment.
+Website headings remain larger than application headings to suit marketing content.
+Cards use restrained 12px or 16px corners and thin borders.
+Buttons use compact rounded rectangles rather than pills.
 
-## Typography and layout
+## Product preview and imagery
 
-Inter Black carries the display headings; Inter handles body content, and Geist Mono handles illustrative code.
-Display headings retain the original tight 0.85 line height.
-The desktop hero uses a 96px display size, with smaller responsive sizes for tablet and mobile.
-Content sits in a 1152px container with 24px side gutters.
-Major sections use generous spacing, reduced on mobile.
-Rounded image frames and pill buttons preserve the original visual identity.
-Purple underlines are the recurring headline accent.
+The dashboard preview uses real HTML and SVG with the admin panel's sidebar, coral banner, metric cards, chart, and transaction rows.
+Its figures are explicitly example data.
+It makes no backend requests and cannot execute payments.
+Preserve the supplied explanatory artwork under `public/generated/`.
+Those illustrations are secondary content, rather than the source of the website's brand palette.
+The mobile companion is labeled as a concept.
+The existing social preview remains available when `SITE_URL` is configured.
 
-## Page content
+## Behaviour and verification
 
-The page moves from the ownership promise and target audiences into card-to-crypto, custody comparison, architecture, self-hosting preparation, features, payment flow, dashboard illustration, AI agents, mobile concept, networks, FAQ, and final calls to action.
-Navigation and calls to action resolve to sections on this page.
-Do not add placeholder destinations or invented installation commands.
-Card providers and blockchain networks remain external rails with their own requirements and fees.
-Avoid unverified fee, settlement-speed, customer, press, licensing, or production-readiness claims.
-
-## Imagery
-
-The supplied assets remain under `public/generated/`.
-Dashboard and checkout images are illustrations rather than live screenshots.
-The mobile companion is identified as a concept.
-Retain suitable supplied art instead of regenerating it during ordinary edits.
-The original image-generation pipeline is outside this standalone website; generation credentials are not required to build or deploy it.
-The supplied social preview is enabled only when the build has a verified `SITE_URL` origin.
-
-## Interaction and accessibility
-
-The mobile navigation opens and closes with a labeled button and closes after a link is selected.
-FAQ controls expose their expanded state and support keyboard activation.
-Provide visible focus indicators, a skip link, descriptive image alternatives, and valid internal anchors.
-Lenis and GSAP effects are disabled when reduced motion is requested.
-The payment-path animation also becomes a static, fully visible diagram on narrow or short screens.
-Keep body content readable without requiring animation to finish.
-
-## Validation
-
-Run lint, the static production build, and the Playwright suite before pushing changes.
-Browser checks cover the exported site on desktop and mobile, including image loading, navigation, FAQ interaction, overflow, and reduced motion.
+Preserve working section links, mobile navigation, keyboard FAQs, focus indicators, image alternatives, and reduced-motion support.
+The payment-path animation is static on narrow or short screens.
+Run lint, the production export, and the existing desktop/mobile browser tests before pushing.
+Avoid unverified customer, fee, settlement-speed, or production-readiness claims.

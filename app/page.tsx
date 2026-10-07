@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { BrandLogo } from "./components/brand-logo";
+import { DashboardPreview } from "./components/dashboard-preview";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,8 +27,7 @@ function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl">
       <nav aria-label="Main navigation" className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
         <a href="#top" aria-label="Payminto home" className="flex items-center gap-2.5">
-          <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full bg-brand text-[13px] font-black text-brand-ink">P</span>
-          <span className="text-[16px] font-bold tracking-tight">payminto</span>
+          <BrandLogo />
         </a>
         <div className="hidden items-center gap-3 md:flex">
           {NAV_LINKS.map(([label, href]) => <a key={label} href={href} className="nav-hover rounded-full px-3 py-1.5 text-[14px] font-semibold">{label}</a>)}
@@ -53,8 +54,8 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-6" data-reveal-stagger>
         <h1
           data-stagger-child
-          className="font-display mb-8 max-w-none text-[52px] font-black text-foreground md:text-[88px] lg:text-[96px]"
-          style={{ lineHeight: 0.85, letterSpacing: "-0.02em" }}
+          className="font-display mb-8 max-w-none text-[52px] font-bold text-foreground md:text-[88px] lg:text-[80px]"
+          style={{ lineHeight: 1.08, letterSpacing: "-0.02em" }}
         >
           Payment infrastructure
           <br />
@@ -76,20 +77,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* Supplied product illustration */}
-        <div
-          data-stagger-child
-          className="card-ring-lg hover-tilt relative mt-6 aspect-[3/2] overflow-hidden"
-        >
-          <Image
-            src="/generated/dashboard-mockup.png"
-            alt="Illustrative Payminto dashboard showing payments, wallets, and transaction volume"
-            fill
-            sizes="(max-width: 768px) 100vw, 1152px"
-            priority
-            className="object-contain"
-          />
-        </div>
+        <div data-stagger-child className="mt-8"><DashboardPreview /></div>
         <p className="mt-3 text-xs font-semibold text-foreground-muted">Product illustration with example data.</p>
 
         {/* Stats - inline under the screenshot, no card wrapper */}
@@ -104,8 +92,8 @@ function Hero() {
           ].map((stat) => (
             <div key={stat.label}>
               <div
-                className="font-display text-[30px] font-black text-foreground md:text-[40px]"
-                style={{ lineHeight: 0.85 }}
+                className="font-display text-[30px] font-bold text-foreground md:text-[40px]"
+                style={{ lineHeight: 1.08 }}
               >
                 {stat.value}
               </div>
@@ -143,12 +131,12 @@ function CardToCrypto() {
     <section id="card-to-crypto" className="py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2">
         <div>
-          <div className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-[#3b1d8a]">
+          <div className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-[#17152f]">
             Card-to-crypto
           </div>
           <h2
-            className="font-display mb-6 text-[48px] font-black text-foreground md:text-[72px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display mb-6 text-[48px] font-bold text-foreground md:text-[56px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             Cards in.
@@ -198,8 +186,8 @@ function CustodyExplained() {
               First time hearing this?
             </p>
             <h2
-              className="font-display text-[44px] font-black text-foreground md:text-[72px]"
-              style={{ lineHeight: 0.85 }}
+              className="font-display text-[44px] font-bold text-foreground md:text-[56px]"
+              style={{ lineHeight: 1.08 }}
               data-reveal
             >
               Where does your
@@ -247,12 +235,12 @@ function ArchitectureSection() {
     <section id="architecture" className="bg-surface-mint border-t border-border py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-3xl">
-          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-[#3b1d8a]">
+          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-[#17152f]">
             Inside your infrastructure
           </p>
           <h2
-            className="font-display text-[44px] font-black text-foreground md:text-[72px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display text-[44px] font-bold text-foreground md:text-[56px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             One payment layer.
@@ -267,7 +255,7 @@ function ArchitectureSection() {
         </div>
 
         <div className="mb-6 flex flex-wrap gap-3 text-sm font-semibold"><span className="rounded-full border border-border bg-surface px-4 py-2">Human checkout</span><span className="rounded-full border border-border bg-surface px-4 py-2">Applications & APIs</span><span className="rounded-full border border-border bg-surface px-4 py-2">AI agents & MCP</span></div>
-        <div className="rounded-[40px] border-2 border-brand p-2">
+        <div className="rounded-2xl border border-border-strong p-2">
         <p className="px-4 py-3 text-sm font-bold text-brand-ink">Runs inside your infrastructure</p>
         <div className="card-ring-lg relative aspect-[16/9] overflow-hidden bg-surface">
           <Image
@@ -303,7 +291,7 @@ function SetupSection() {
   return (
     <section id="setup" className="bg-surface-mint border-b border-border py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="font-display mb-8 text-[44px] md:text-[72px]">Your cloud.<br /><span className="brand-underline">Your payment core.</span></h2>
+        <h2 className="font-display mb-8 text-[44px] md:text-[56px]">Your cloud.<br /><span className="brand-underline">Your payment core.</span></h2>
         <p className="mb-10 max-w-2xl text-[18px] font-semibold leading-relaxed text-foreground-soft">Self-hosting gives your team control of the deployment. Plan the environment, connect your rails, and validate your payment flow before accepting live payments.</p>
         <ol className="grid gap-6 md:grid-cols-3">
           {[
@@ -360,8 +348,8 @@ function FeaturesGrid() {
             What you get
           </p>
           <h2
-            className="font-display text-[48px] font-black text-foreground md:text-[84px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display text-[48px] font-bold text-foreground md:text-[64px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             Own the logic.
@@ -378,9 +366,7 @@ function FeaturesGrid() {
                 i === 0 ? "sm:col-span-2 sm:row-span-1 bg-surface-mint" : ""
               }`}
             >
-              <div className="icon-pop mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-brand">
-                <Image src={f.icon} alt="" width={36} height={36} className="opacity-90" />
-              </div>
+              <div className="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-surface-mint text-brand-ink" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg></div>
               <h3 className="mb-2 text-[22px] font-bold text-foreground" style={{ letterSpacing: "-0.01em" }}>
                 {f.title}
               </h3>
@@ -423,7 +409,7 @@ function FlowDiagram() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(max-width: 767px)").matches || window.matchMedia("(max-height: 799px)").matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(max-width: 767px)").matches || window.matchMedia("(max-height: 899px)").matches;
     const path = pathRef.current;
     const coin = coinRef.current;
     const section = sectionRef.current;
@@ -497,8 +483,8 @@ function FlowDiagram() {
               How it flows
             </p>
             <h2
-              className="font-display text-[48px] font-black text-foreground md:text-[84px]"
-              style={{ lineHeight: 0.85 }}
+              className="font-display text-[48px] font-bold text-foreground md:text-[64px]"
+              style={{ lineHeight: 1.08 }}
             >
               Checkout to
               <br />
@@ -518,14 +504,14 @@ function FlowDiagram() {
             >
               <defs>
                 <linearGradient id="flowGrad" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#3b1d8a" />
-                  <stop offset="50%" stopColor="#a78bfa" />
-                  <stop offset="100%" stopColor="#3b1d8a" />
+                  <stop offset="0%" stopColor="#17152f" />
+                  <stop offset="50%" stopColor="#e22323" />
+                  <stop offset="100%" stopColor="#17152f" />
                 </linearGradient>
                 <radialGradient id="coinGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="60%" stopColor="#c4b5fd" />
-                  <stop offset="100%" stopColor="#a78bfa" />
+                  <stop offset="60%" stopColor="#fceeea" />
+                  <stop offset="100%" stopColor="#e22323" />
                 </radialGradient>
                 <filter id="coinGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="6" result="b" />
@@ -557,8 +543,8 @@ function FlowDiagram() {
                     cx={n.cx}
                     cy={n.cy}
                     r="16"
-                    fill="#fafaf7"
-                    stroke="#3b1d8a"
+                    fill="#f7f8fa"
+                    stroke="#17152f"
                     strokeWidth="2.5"
                   />
                   <text
@@ -568,7 +554,7 @@ function FlowDiagram() {
                     fontSize="11"
                     fontFamily="ui-monospace, monospace"
                     fontWeight="700"
-                    fill="#3b1d8a"
+                    fill="#17152f"
                   >
                     {n.label}
                   </text>
@@ -576,13 +562,13 @@ function FlowDiagram() {
               ))}
 
               <g ref={coinRef} filter="url(#coinGlow)">
-                <circle r="20" fill="url(#coinGrad)" stroke="#3b1d8a" strokeWidth="2" />
+                <circle r="20" fill="url(#coinGrad)" stroke="#17152f" strokeWidth="2" />
                 <text
                   textAnchor="middle"
                   y="5"
                   fontSize="17"
                   fontWeight="900"
-                  fill="#3b1d8a"
+                  fill="#17152f"
                   fontFamily="system-ui"
                 >
                   $
@@ -600,7 +586,7 @@ function FlowDiagram() {
                 }}
                 className="card-ring p-6"
               >
-                <div className="mb-2 font-mono text-[11px] font-bold text-[#3b1d8a]">
+                <div className="mb-2 font-mono text-[11px] font-bold text-[#17152f]">
                   {step.num}
                 </div>
                 <div className="mb-1 text-[18px] font-bold text-foreground">{step.title}</div>
@@ -626,8 +612,8 @@ function AgentsSection() {
             For AI agents
           </p>
           <h2
-            className="font-display mb-6 text-[48px] font-black text-foreground md:text-[84px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display mb-6 text-[48px] font-bold text-foreground md:text-[64px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             Built for agents
@@ -662,7 +648,7 @@ function AgentsSection() {
           </div>
 
           <div className="card-ring hover-lift p-8 bg-surface-mint">
-            <div className="mb-5 inline-flex rounded-full bg-[#3b1d8a] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-brand">
+            <div className="mb-5 inline-flex rounded-full bg-[#17152f] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-brand">
               Payminto
             </div>
             <ul className="space-y-3 text-[15px] font-semibold text-foreground">
@@ -674,7 +660,7 @@ function AgentsSection() {
                 "Transaction events through webhooks",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 text-[#3b1d8a]">✓</span>
+                  <span className="mt-1 text-[#17152f]">✓</span>
                   {item}
                 </li>
               ))}
@@ -686,7 +672,7 @@ function AgentsSection() {
           <div className="border-b border-border bg-surface-soft px-4 py-2.5 text-[11px] font-bold text-foreground-muted">
             Illustrative agent payment request
           </div>
-          <div className="bg-[#0e0f0c] px-5 py-5 leading-relaxed text-[#fafaf7]">
+          <div className="bg-brand-navy px-5 py-5 leading-relaxed text-white">
             <div className="text-white/50">{"// expose payminto tools to Claude"}</div>
             <div>
               <span className="text-brand">const</span>{" "}
@@ -734,8 +720,8 @@ function DashboardShowcase() {
             The dashboard
           </p>
           <h2
-            className="font-display text-[48px] font-black text-foreground md:text-[84px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display text-[48px] font-bold text-foreground md:text-[64px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             See every dollar.
@@ -743,15 +729,7 @@ function DashboardShowcase() {
             <span className="brand-underline">Move every coin.</span>
           </h2>
         </div>
-        <div className="card-ring-lg hover-tilt relative aspect-[3/2] overflow-hidden">
-          <Image
-            src="/generated/dashboard-mockup.png"
-            alt="Illustrative Payminto dashboard showing payments, wallets, and transaction volume"
-            fill
-            sizes="(max-width: 768px) 100vw, 1152px"
-            className="object-cover"
-          />
-        </div>
+        <DashboardPreview />
         <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Payment volume", "Review payment activity across configured assets and networks."],
@@ -789,8 +767,8 @@ function MobileApp() {
             Mobile companion concept
           </p>
           <h2
-            className="font-display mb-6 text-[48px] font-black text-foreground md:text-[72px]"
-            style={{ lineHeight: 0.85 }}
+            className="font-display mb-6 text-[48px] font-bold text-foreground md:text-[56px]"
+            style={{ lineHeight: 1.08 }}
             data-reveal
           >
             Approve payouts
@@ -841,8 +819,8 @@ function SupportedChains() {
           Multi-chain
         </p>
         <h2
-          className="font-display mb-12 text-[40px] font-black text-foreground md:text-[60px]"
-          style={{ lineHeight: 0.85 }}
+          className="font-display mb-12 text-[40px] font-bold text-foreground md:text-[60px]"
+          style={{ lineHeight: 1.08 }}
           data-reveal
         >
           Cards and crypto.
@@ -857,7 +835,7 @@ function SupportedChains() {
               className="card-ring hover-chip flex items-center gap-3 px-5 py-3"
             >
               <div
-                className="grid h-9 w-9 place-items-center rounded-full text-[12px] font-black text-white"
+                className="grid h-9 w-9 place-items-center rounded-full text-[12px] font-bold text-white"
                 style={{ backgroundColor: coin.color }}
               >
                 {coin.symbol.slice(0, 1)}
@@ -893,8 +871,8 @@ function FAQ() {
     <section id="faq" className="bg-background border-y border-border py-28">
       <div className="mx-auto max-w-3xl px-6">
         <h2
-          className="font-display mb-12 text-center text-[48px] font-black text-foreground md:text-[72px]"
-          style={{ lineHeight: 0.85 }}
+          className="font-display mb-12 text-center text-[48px] font-bold text-foreground md:text-[56px]"
+          style={{ lineHeight: 1.08 }}
           data-reveal
         >
           Questions,
@@ -913,7 +891,7 @@ function FAQ() {
               >
                 {faq.q}
                 <span
-                  className={`ml-4 grid h-8 w-8 place-items-center rounded-full bg-surface-mint text-[#3b1d8a] transition-transform duration-300 ${
+                  className={`ml-4 grid h-8 w-8 place-items-center rounded-full bg-surface-mint text-[#17152f] transition-transform duration-300 ${
                     open === i ? "rotate-45" : ""
                   }`}
                 >
@@ -941,8 +919,8 @@ function CTABanner() {
       <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <h2
-          className="font-display mb-8 text-[56px] font-black text-foreground md:text-[112px]"
-          style={{ lineHeight: 0.85 }}
+          className="font-display mb-8 text-[56px] font-bold text-foreground md:text-[80px]"
+          style={{ lineHeight: 1.08 }}
         >
           Stop renting your
           <br />
@@ -967,10 +945,10 @@ function CTABanner() {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
-  return <footer className="border-t border-border bg-[#0e0f0c] py-16 text-[#fafaf7]">
+  return <footer className="border-t border-border bg-brand-navy py-16 text-white">
     <div className="mx-auto max-w-6xl px-6">
       <div className="flex flex-col justify-between gap-10 md:flex-row">
-        <div><a href="#top" className="text-xl font-bold">payminto</a><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">Private payment infrastructure for humans and AI agents. Deploy it in your environment. Make it yours.</p></div>
+        <div><a href="#top" aria-label="Payminto home"><BrandLogo inverse /></a><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">Private payment infrastructure for humans and AI agents. Deploy it in your environment. Make it yours.</p></div>
         <nav aria-label="Footer navigation" className="flex flex-wrap items-start gap-6 text-sm font-semibold">
           {NAV_LINKS.map(([label, href]) => <a key={label} href={href} className="hover:text-brand">{label}</a>)}
           <a href="#setup" className="hover:text-brand">Self-hosting</a>

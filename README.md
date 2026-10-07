@@ -1,6 +1,6 @@
 # Payminto website
 
-The standalone Payminto landing page, extracted from the existing landing project with its original generated artwork and purple design system.
+The standalone Payminto landing page, extracted from the existing landing project with its original generated artwork and the current admin panel design system.
 The page introduces private, self-hosted card and crypto payment infrastructure for businesses, developers, and AI agent builders.
 
 This repository contains the marketing website only.
@@ -47,12 +47,13 @@ GitHub Actions runs these checks on pushes and pull requests.
 ## Edit the landing page
 
 - `app/page.tsx`: navigation, positioning, target audiences, card-to-crypto, custody comparison, architecture, self-hosting overview, features, payment flow, agent integration, product illustrations, FAQ, and calls to action.
-- `app/globals.css`: purple theme, typography, responsive layout, and accessibility.
+- `app/globals.css`: admin-aligned theme, typography, responsive layout, and accessibility.
 - `app/layout.tsx`: page metadata, fonts, and favicon.
 - `public/generated/`: original generated illustrations and the existing social preview.
-- `docs/PAYMINTO_DESIGN_SYSTEM.md`: original visual reference.
+- `docs/PAYMINTO_DESIGN_SYSTEM.md`: shared brand and website visual reference.
 
-Dashboard and checkout artwork are illustrative, not live product screenshots.
+The dashboard preview uses the admin panel design with example data.
+Checkout artwork is illustrative, not a live product screenshot.
 The mobile companion is explicitly presented as a concept.
 All calls to action lead to real sections on this page; add verified product documentation or release URLs when those destinations are available.
 There are no placeholder install commands, fabricated press endorsements, testimonials, or blanket zero-fee claims.
