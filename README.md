@@ -26,7 +26,9 @@ npm start
 
 The build exports the site into `out/`.
 The preview server runs at http://127.0.0.1:3107; set `PORT` to change it.
-Deploy the contents of `out/` to a static web host, or import this repository into a Next.js-compatible hosting service with `npm run build` as the build command.
+Deploy the contents of `out/` to a static web host.
+On AWS Amplify, connect this repository and the build settings in `amplify.yml` are picked up automatically (Node 22, output in `out/`).
+Alternatively, import this repository into a Next.js-compatible hosting service with `npm run build` as the build command.
 No environment variables are required.
 Optionally set `SITE_URL` to your verified public origin at build time to enable the supplied social preview with an absolute image URL.
 Without a public origin, image metadata is omitted so share cards never point at localhost.
