@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BrandLogo } from "./components/brand-logo";
 import { DashboardPreview } from "./components/dashboard-preview";
+import { ProvidersSection } from "./components/providers-section";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,7 +16,8 @@ if (typeof window !== "undefined") {
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 const NAV_LINKS = [
-  ["Product", "#features"],
+  ["Product", "#controls"],
+  ["Providers", "#providers"],
   ["Architecture", "#architecture"],
   ["Agents", "#agents"],
   ["FAQ", "#faq"],
@@ -52,27 +54,30 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-0">
       <div className="mx-auto max-w-6xl px-6" data-reveal-stagger>
+        <p data-stagger-child className="mb-6 inline-flex rounded-full bg-surface-mint px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-brand-navy">
+          Composable · Self-deployable
+        </p>
         <h1
           data-stagger-child
-          className="font-display mb-8 max-w-none text-[52px] font-bold text-foreground md:text-[88px] lg:text-[80px]"
+          className="font-display mb-8 max-w-none text-[52px] font-bold text-foreground md:text-[80px]"
           style={{ lineHeight: 1.08, letterSpacing: "-0.02em" }}
         >
           Payment infrastructure
           <br />
-          you <span className="brand-underline">actually own.</span>
+          for <span className="brand-underline">humans and AI agents.</span>
         </h1>
 
         <div data-stagger-child className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-lg text-[18px] font-semibold leading-[1.5] text-foreground-soft">
-            Self-hosted, private payment infrastructure for humans and AI agents.
-            Accept card and crypto payments on infrastructure you deploy, own, and control.
+            Give your store, application, or agent swarm its own payment layer.
+            Deploy it, connect supported acquirers, and integrate checkout through APIs and webhooks.
           </p>
           <div className="flex flex-shrink-0 flex-col gap-3 sm:flex-row">
             <a href="#setup" className="btn-pill btn-primary">
               Explore self-hosting
             </a>
-            <a href="#architecture" className="btn-pill btn-secondary">
-              View architecture
+            <a href="#providers" className="btn-pill btn-secondary">
+              See providers
             </a>
           </div>
         </div>
@@ -87,8 +92,8 @@ function Hero() {
         >
           {[
             { value: "Your server", label: "Self-hosted payment core" },
-            { value: "Your rules", label: "Programmable workflows" },
-            { value: "Your wallet", label: "Control over custody" },
+            { value: "Your providers", label: "Acquirers connected with your credentials" },
+            { value: "Your rules", label: "Fees, buffers, and reserves you configure" },
           ].map((stat) => (
             <div key={stat.label}>
               <div
@@ -299,6 +304,74 @@ function SetupSection() {
             ["Connect your payment rails", "Configure wallets, supported networks, and card-to-crypto providers for your business and region."],
             ["Validate the complete flow", "Test checkout, confirmations, webhooks, permissions, and settlement before enabling production payments."],
           ].map(([title, description], i) => <li key={title} className="card-ring p-6"><span className="mb-4 block font-mono text-sm text-brand-ink">0{i + 1}</span><h3 className="mb-3 text-xl font-bold">{title}</h3><p className="text-sm leading-relaxed text-foreground-soft">{description}</p></li>)}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+// ─── Payment Controls ─────────────────────────────────────────────────────────
+const CONTROLS = [
+  ["Payment links", "Share a link for a fixed amount, or create one per order from your API."],
+  ["Dynamic payments", "Create payment requests at checkout time with the amount, currency, and metadata of each order."],
+  ["Multiple fiat currencies", "Price in the currencies your customers use, and let the connected acquirer handle the card rail."],
+  ["Crypto settlement", "Settle to wallets you configure, on the networks you enable."],
+  ["Layered fees", "Stack platform, merchant, and provider fees in the order your business model needs."],
+  ["Conversion buffers", "Protect fiat-to-crypto quotes from price movement between checkout and settlement."],
+  ["Rolling reserves", "Hold a configurable share of volume for a set period before it is released."],
+  ["APIs & webhooks", "Every payment, confirmation, and settlement event shares one consistent API and webhook stream."],
+];
+
+function PaymentControls() {
+  return (
+    <section id="controls" className="py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-14 max-w-3xl">
+          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-foreground-muted">Composable by design</p>
+          <h2 className="font-display text-[44px] font-bold text-foreground md:text-[56px]" data-reveal>
+            Configure payments
+            <br />
+            <span className="brand-underline">around your business.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-[17px] font-semibold leading-[1.5] text-foreground-soft">
+            Compose the payment layer from the controls you need, rather than accepting a provider&apos;s fixed product.
+          </p>
+        </div>
+        <ul className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {CONTROLS.map(([title, desc], i) => (
+            <li key={title} className="bg-surface p-6">
+              <span className="mb-4 block font-mono text-sm text-brand-ink">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mb-2 text-[17px] font-bold">{title}</h3>
+              <p className="text-[14px] font-semibold leading-[1.5] text-foreground-soft">{desc}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+// ─── Roadmap ──────────────────────────────────────────────────────────────────
+function RoadmapSection() {
+  return (
+    <section id="roadmap" className="py-24">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_1.3fr]">
+        <div>
+          <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-foreground-muted">Roadmap</p>
+          <h2 className="font-display text-[40px] font-bold md:text-[48px]">Start self-hosted.<br /><span className="brand-underline">Grow into enterprise.</span></h2>
+        </div>
+        <ol className="grid gap-4 sm:grid-cols-2">
+          {[
+            ["Now", "Self-hosted core", "Payment routing, checkout, connectors, settlement, and transaction events on your infrastructure."],
+            ["Next", "Enterprise operations", "Managed operations, monitoring, audit reporting, and country-specific compliance support."],
+            ["Later", "Specialised use cases", "Support for more specialised merchants, including high-risk categories."],
+          ].map(([when, title, desc]) => (
+            <li key={title} className="card-ring p-6 last:sm:col-span-2">
+              <span className="provider-status">{when}</span>
+              <h3 className="mt-4 mb-2 text-[18px] font-bold">{title}</h3>
+              <p className="text-[14px] font-semibold leading-[1.5] text-foreground-soft">{desc}</p>
+            </li>
+          ))}
         </ol>
       </div>
     </section>
@@ -801,66 +874,13 @@ function MobileApp() {
   );
 }
 
-// ─── Supported Chains ─────────────────────────────────────────────────────────
-const COINS = [
-  { symbol: "BTC", name: "Bitcoin", color: "#f7931a" },
-  { symbol: "ETH", name: "Ethereum", color: "#627eea" },
-  { symbol: "USDT", name: "Tether", color: "#26a17b" },
-  { symbol: "USDC", name: "USD Coin", color: "#2775ca" },
-  { symbol: "TRX", name: "TRON", color: "#ef0027" },
-  { symbol: "BASE", name: "Base", color: "#0052ff" },
-];
-
-function SupportedChains() {
-  return (
-    <section id="networks" className="py-24">
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.18em] text-foreground-muted">
-          Multi-chain
-        </p>
-        <h2
-          className="font-display mb-12 text-[40px] font-bold text-foreground md:text-[60px]"
-          style={{ lineHeight: 1.08 }}
-          data-reveal
-        >
-          Cards and crypto.
-          <br />
-          <span className="brand-underline">One payment layer.</span>
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-3">
-          {COINS.map((coin) => (
-            <div
-              key={coin.symbol}
-              className="card-ring hover-chip flex items-center gap-3 px-5 py-3"
-            >
-              <div
-                className="grid h-9 w-9 place-items-center rounded-full text-[12px] font-bold text-white"
-                style={{ backgroundColor: coin.color }}
-              >
-                {coin.symbol.slice(0, 1)}
-              </div>
-              <div className="text-left">
-                <div className="text-[14px] font-bold text-foreground">{coin.symbol}</div>
-                <div className="text-[11px] font-semibold text-foreground-muted">{coin.name}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Testimonial ──────────────────────────────────────────────────────────────
-
-
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 const FAQS = [
   { q: "What does self-hosted mean?", a: "You deploy and operate the payment core in your own cloud, VPS, or private environment. Your team manages its access, configuration, transaction data, backups, and updates." },
   { q: "Does Payminto replace banks or card processors?", a: "No. Payminto is the payment software and orchestration layer. Card payments still use external providers, processors, and banks. Card-to-crypto availability, verification, and fees depend on the connected provider." },
   { q: "Are there costs for payments?", a: "Budget for hosting and operations, blockchain network fees, and any fees charged by connected card or onramp providers. Self-hosting does not remove the costs of the underlying payment rails." },
   { q: "How do AI agents connect?", a: "MCP-compatible agents can connect to payment tools in your instance. Your team controls the credentials and permitted access. Validate the tools and authorization rules in your deployment before allowing an agent to act." },
+  { q: "Can I add a processor that is not listed?", a: "Yes. Processors are connector modules. A developer builds one from the provider's API documentation, and it then shares the same routing, checkout, settlement, and webhook interfaces as every other connector." },
   { q: "Who is Payminto for?", a: "Commerce businesses, marketplaces, fintech teams, specialist merchants, and AI agent developers who need more control over their payment infrastructure. Your available payment methods depend on your network and provider integrations." },
 ];
 
@@ -971,6 +991,8 @@ export default function Home() {
       <div id="main-content" tabIndex={-1}>
       <Hero />
       <AudienceSection />
+      <PaymentControls />
+      <ProvidersSection />
       <CardToCrypto />
       <CustodyExplained />
       <ArchitectureSection />
@@ -980,7 +1002,7 @@ export default function Home() {
       <DashboardShowcase />
       <AgentsSection />
       <MobileApp />
-      <SupportedChains />
+      <RoadmapSection />
       <FAQ />
       <CTABanner />
       </div>

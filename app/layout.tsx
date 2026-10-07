@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: "Payminto | Payment infrastructure you own",
   description:
-    "Self-hosted, private payment infrastructure for humans and AI agents. Accept card and crypto payments on infrastructure you deploy, own, and control.",
+    "Composable, self-deployable payment infrastructure for humans and AI agents. Connect your acquirers, configure fees, reserves, and settlement, and integrate through APIs and webhooks.",
   icons: { icon: "/icon.svg" },
   openGraph: {
     title: "Payminto | Payment infrastructure you own",

@@ -49,3 +49,29 @@ test('navigation reaches architecture and respects reduced motion', async ({ pag
   await expect(page.locator('.pin-spacer')).toHaveCount(0);
   await expect(page.locator('#features h2')).toHaveCSS('opacity', '1');
 });
+
+test('providers can be filtered by category', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/#providers');
+  const list = page.getByRole('list', { name: 'Providers' });
+  await expect(list.getByRole('heading', { name: 'Solana' })).toBeVisible();
+  await page.getByRole('button', { name: 'Acquirers' }).click();
+  await expect(page.getByRole('button', { name: 'Acquirers' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(list.getByRole('heading', { name: 'Kuberpayss' })).toBeVisible();
+  await expect(list.getByRole('heading', { name: 'Solana' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Onramps' })).toHaveCount(0);
+});
+
+test('preview sidebar stays fixed while its workspace scrolls', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'mobile', 'The preview sidebar is hidden on mobile');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const preview = page.locator('.dashboard-preview').first();
+  const sidebarOffset = () => preview.evaluate(el => el.querySelector('.preview-sidebar')!.getBoundingClientRect().top - el.getBoundingClientRect().top);
+  await expect(preview.locator('.preview-sidebar')).toContainText('Composable');
+  const workspace = preview.locator('.preview-workspace');
+  const before = await sidebarOffset();
+  await workspace.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  expect(await workspace.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  expect(await sidebarOffset()).toBe(before);
+});

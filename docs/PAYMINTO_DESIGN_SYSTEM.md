@@ -5,7 +5,7 @@ Keep the website and admin panel recognizably part of the same product.
 
 ## Shared brand
 
-Use the navy rounded-square P mark, green corner accent, title-case Payminto wordmark, and Merchant infrastructure subtitle.
+Use the navy rounded-square P mark, green corner accent, title-case Payminto wordmark, and Composable payments subtitle.
 Navigation, footer, dashboard preview, and favicon use the same brand construction.
 The admin panel remains the reference for future branding changes.
 

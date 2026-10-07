@@ -46,7 +46,9 @@ GitHub Actions runs these checks on pushes and pull requests.
 
 ## Edit the landing page
 
-- `app/page.tsx`: navigation, positioning, target audiences, card-to-crypto, custody comparison, architecture, self-hosting overview, features, payment flow, agent integration, product illustrations, FAQ, and calls to action.
+- `app/page.tsx`: navigation, positioning, target audiences, payment controls, roadmap, card-to-crypto, custody comparison, architecture, self-hosting overview, features, payment flow, agent integration, product illustrations, FAQ, and calls to action.
+- `app/components/providers-section.tsx`: hackathon providers, track teams, and Why Solana in one section; remove it and its `Providers` nav link after the hackathon.
+- `app/components/dashboard-preview.tsx`: admin preview with a fixed sidebar and an independently scrolling workspace.
 - `app/globals.css`: admin-aligned theme, typography, responsive layout, and accessibility.
 - `app/layout.tsx`: page metadata, fonts, and favicon.
 - `public/generated/`: original generated illustrations and the existing social preview.
